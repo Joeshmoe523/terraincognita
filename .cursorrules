@@ -1,0 +1,38 @@
+# Cursor Rules
+# This file configures behavior for the Cursor editor
+
+# Format: [command] [pattern] [=> replacement]
+
+# Application Configuration
+# Ruby on Rails 8.0
+# Tailwind CSS
+# Flowbite 2.5.2
+# Using importmaps (propshaft)
+
+# File naming conventions
+filename app/controllers/*_controller.rb => snake_case
+filename app/models/*.rb => snake_case
+filename app/views/**/*.html.erb => snake_case
+filename app/components/**/*.html.erb => snake_case
+filename app/components/**/*.rb => snake_case
+filename app/javascript/**/*.js => camelCase
+
+# Code formatting
+format *.rb => rubocop
+format *.{css,scss} => prettier
+format *.erb => erb-format
+format *.js => prettier
+
+# Tailwind class sorting
+format *.{html,erb} => tailwindcss-class-sorter
+
+# Custom transformations
+replace binding.pry => # binding.pry
+replace console.log => # console.log
+
+# Path conventions
+path app/javascript/controllers/*.js => stimulus_controller
+path app/components/**/* => viewcomponent
+path app/views/**/*.html.erb => view_template
+
+# Add your rules below: 

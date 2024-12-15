@@ -29,6 +29,13 @@
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.5.2/flowbite.min.js"></script>
   </body>
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
 </html>

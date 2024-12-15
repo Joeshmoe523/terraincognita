@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get "dashboard/index"
   devise_for :users
 
+  resources :growth_plans, param: :token
+
   # Pages routes
   get "about", to: "pages#about"
   get "contact", to: "pages#contact"

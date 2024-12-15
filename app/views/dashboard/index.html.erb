@@ -1,0 +1,19 @@
+<%= render "pages/sidenav" %>
+
+<div class="p-4 sm:ml-64">
+  <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+    <!-- Your page content here -->
+    <h1 class="font-bold text-4xl">Dashboard</h1>
+    <p>Find me in app/views/pages/home.html.erb</p>
+
+    <div class="bg-white rounded-lg shadow p-6">
+      <p class="text-gray-700">Welcome, <%= current_user.email %></p>
+      
+      <%= button_to "Sign Out", 
+          destroy_user_session_path, 
+          method: :delete, 
+          class: "mt-4 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
+    </div>
+  </div>
+  
+</div>

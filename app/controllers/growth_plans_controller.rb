@@ -14,8 +14,7 @@ class GrowthPlansController < ApplicationController
   end
 
   def create
-    @growth_plan = GrowthPlan.new(growth_plan_params)
-    @growth_plan.user = current_user
+    @growth_plan = current_user.growth_plans.build(growth_plan_params)
 
     if @growth_plan.save
       redirect_to growth_plan_path(@growth_plan), notice: "Growth plan was successfully created."

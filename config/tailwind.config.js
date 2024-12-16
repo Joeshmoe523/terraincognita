@@ -5,8 +5,7 @@ module.exports = {
     './app/views/**/*.html.erb',
     './app/helpers/**/*.rb',
     './app/assets/stylesheets/**/*.css',
-    './app/javascript/**/*.js',
-    './node_modules/flowbite/**/*.js'
+    './app/javascript/**/*.js'
   ],
   theme: {
     extend: {
@@ -18,7 +17,6 @@ module.exports = {
   plugins: [
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
-    require('@tailwindcss/container-queries'),
-    require('flowbite/plugin')
+    require('@tailwindcss/container-queries')
   ]
 }

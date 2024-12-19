@@ -7,17 +7,17 @@ class GrowthPlansController < ApplicationController
   end
 
   def show
-    @growth_plan = GrowthPlan.find_by_token!(params[:id])
+    @growth_plan = GrowthPlan.find_by_token!(params[:token])
   end
   def edit
-    @growth_plan = GrowthPlan.find_by_token!(params[:id])
+    @growth_plan = GrowthPlan.find_by_token!(params[:token])
   end
 
   def create
     @growth_plan = current_user.growth_plans.build(growth_plan_params)
 
     if @growth_plan.save
-      redirect_to growth_plan_path(@growth_plan), notice: "Growth plan was successfully created."
+      redirect_to growth_plan_path(@growth_plan.token), notice: "Growth plan was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -26,7 +26,7 @@ class GrowthPlansController < ApplicationController
   def update
     @growth_plan = GrowthPlan.find_by_token!(params[:id])
     if @growth_plan.update(growth_plan_params)
-      redirect_to growth_plans_path(@growth_plan), notice: "Growth plan was successfully updated."
+      redirect_to growth_plan_path(@growth_plan.token), notice: "Growth plan was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end

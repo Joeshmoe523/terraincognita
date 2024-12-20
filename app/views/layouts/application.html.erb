@@ -23,6 +23,7 @@
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag "flowbite.min", "data-turbo-track": "reload" %>
   </head>
 
   <body class="h-full w-full bg-gray-50 dark:bg-gray-900 flex flex-col" data-controller="flowbite">
@@ -46,7 +47,6 @@
       <%= yield %>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.5.2/flowbite.min.js"></script>
   </body>
     
 </html>

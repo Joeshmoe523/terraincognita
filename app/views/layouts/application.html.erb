@@ -25,17 +25,28 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="h-full w-full bg-gray-50 dark:bg-gray-900">
+  <body class="h-full w-full bg-gray-50 dark:bg-gray-900 flex flex-col" data-controller="flowbite">
+
+
     <main class="flex-grow">
+      <% if current_user %>
+        <%= render "pages/sidenav" %>
+      <% else %>
+        <%= render "pages/navbar" %>
+      <% end %>
+
+
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
+
       <%= yield %>
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.5.2/flowbite.min.js"></script>
   </body>
-    <% if notice %>
-      <p class="alert alert-success"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
+    
 </html>

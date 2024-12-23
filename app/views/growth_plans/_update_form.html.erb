@@ -1,0 +1,48 @@
+<div class="bg-white rounded-lg border border-gray-300 p-4">
+    <!-- User input area -->
+    <div class="flex w-full gap-3">
+    <div class="flex-shrink-0">
+        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+        <span class="text-mocha-600 font-medium">JD</span>
+        </div>
+    </div>
+    <div class="flex-1 w-full">
+        <textarea rows=2 placeholder="What progress would you like to share?" class="block w-full px-3 py-2 text-gray-700 placeholder-gray-400 bg-transparent border-0 focus:ring-0 focus:outline-none resize-none"></textarea>
+    </div>
+    </div>
+    <div class="flex items-center gap-4 mt-4 pt-3 border-t border-gray-200">
+    <!-- Date picker -->
+    <div class="w-40">
+        <div class="relative max-w-sm">
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+            </svg>
+        </div>
+        <input datepicker id="default-datepicker" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
+        </div>
+    </div>
+        <!-- Option Buttons -->
+    <button
+        type="button"
+        class="flex items-center gap-2 px-3 py-1.5 rounded-md transition-colors hover:bg-gray-100 text-gray-600 data-[selected=true]:bg-blue-100 data-[selected=true]:text-blue-700">
+        <span class="text-sm font-medium">Progress</span>
+    </button>
+    <button
+        type="button"
+        class="flex items-center gap-2 px-3 py-1.5 rounded-md transition-colors hover:bg-gray-100 text-gray-600 data-[selected=true]:bg-blue-100 data-[selected=true]:text-blue-700">
+        <span class="text-sm font-medium">Milestone</span>
+    </button>
+    <button
+        type="button"
+        class="flex items-center gap-2 px-3 py-1.5 rounded-md transition-colors hover:bg-gray-100 text-gray-600 data-[selected=true]:bg-blue-100 data-[selected=true]:text-blue-700">
+        <span class="text-sm font-medium">Feedback</span>
+    </button>
+    <!-- Submit Button --> 
+    <button
+        type="submit"
+        class="ml-auto px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors">
+        Post Update
+    </button>
+    </div>
+</div>

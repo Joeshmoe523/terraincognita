@@ -13,6 +13,14 @@ class GrowthPlansController < ApplicationController
     @growth_plan = GrowthPlan.find_by_token!(params[:token])
   end
 
+  def timeline
+    @growth_plan = GrowthPlan.find_by_token!(params[:token])
+  end
+
+  def collaborators
+    @growth_plan = GrowthPlan.find_by_token!(params[:token])
+  end
+
   def create
     @growth_plan = current_user.growth_plans.build(growth_plan_params)
 

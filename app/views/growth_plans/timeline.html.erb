@@ -1,6 +1,5 @@
 <div class="p-4 sm:ml-64">
   <div class="p-4">
-    
     <h1 class="text-3xl font-bold text-gray-900 mb-2 dark:text-white">Growth Plan</h1>
 
     <%= render partial: "growth_plan_nav", locals: { growth_plan: @growth_plan } %>
@@ -19,7 +18,17 @@
       </div>
 
       <!-- Right Column (2/3 width) -->
+      <div class="col-span-2 space-y-6">
+        <%= render partial: "update_form", growth_plan: @growth_plan %>
 
+        <!-- Timeline -->
+        <div>
+          <h2 class="text-lg font-semibold text-gray-900 mb-6">Progress Timeline</h2>
+          <ol class="relative border-s border-gray-200 dark:border-gray-700 m-4"> 
+            <%= render partial: "timeline_items" %>
+          </ol>
+        </div>
+      </div>
     </div>
   </div>
 </div>

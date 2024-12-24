@@ -1,6 +1,6 @@
 class GrowthPlansController < ApplicationController
   def index
-    @growth_plans = GrowthPlan.all
+    @growth_plans = current_user.growth_plans
   end
   def new
     @growth_plan = GrowthPlan.new

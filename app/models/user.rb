@@ -23,6 +23,10 @@ class User < ApplicationRecord
 
   attr_accessor :form_step
 
+  def form_step
+    @form_step ||= :welcome
+  end
+
   private
 
   def create_profile

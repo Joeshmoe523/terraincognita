@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :after_signup, only: [ :show, :update ]
+
   # Pages routes
   get "about", to: "pages#about"
   get "contact", to: "pages#contact"

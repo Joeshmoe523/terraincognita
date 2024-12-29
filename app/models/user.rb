@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :trackable
 
   has_many :growth_plans
+  has_many :role_profiles, dependent: :destroy
   has_one :user_profile, dependent: :destroy
   after_create :create_profile
 

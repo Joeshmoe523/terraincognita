@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :profiles, only: [ :index ]
 
+  resources :role_profiles, only: [ :create ]
+
   resources :growth_plans, param: :token do
     member do
       get "timeline"
@@ -11,7 +13,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :after_signup, only: [ :show, :update ]
+  resources :after_signup, only: [ :show, :update, :create ]
 
   # Pages routes
   get "about", to: "pages#about"

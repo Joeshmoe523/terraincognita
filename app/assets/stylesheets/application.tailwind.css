@@ -1,14 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/*
-
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+/* Optional: Force Quicksand as the default font */
+@layer base {
+  :root {
+    font-family: 'Quicksand', system-ui, sans-serif !important;
+  }
+  
+  body {
+    font-family: 'Quicksand', system-ui, sans-serif !important;
+  }
+  
+  *, *::before, *::after {
+    font-family: inherit;
   }
 }
 
-*/
 

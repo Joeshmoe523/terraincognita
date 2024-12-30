@@ -80,6 +80,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_30_191417) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "token"
+    t.index ["token"], name: "index_role_profiles_on_token", unique: true
     t.index ["user_id"], name: "index_role_profiles_on_user_id"
   end
 
@@ -118,8 +120,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_30_191417) do
 
   add_foreign_key "feedback_items", "growth_plans"
   add_foreign_key "feedback_items", "users"
-  add_foreign_key "feedbacks", "growth_plans"
-  add_foreign_key "feedbacks", "users"
   add_foreign_key "growth_plans", "users"
   add_foreign_key "role_profiles", "users"
   add_foreign_key "user_profiles", "users"

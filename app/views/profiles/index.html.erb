@@ -1,3 +1,166 @@
 <div class="p-4 sm:ml-64">
-  <h1>Profile</h1>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Left Column - User Profile -->
+    <div class="w-full">
+      <div class="p-6 bg-white border border-gray-200 rounded-lg">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-2xl font-bold text-gray-900">Personal Information</h2>
+          <%= link_to edit_user_registration_path, 
+              class: "text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5" do %>
+            <i class="fas fa-edit mr-2"></i>Edit Profile
+          <% end %>
+        </div>
+
+        <div class="space-y-6">
+          <!-- Basic Information -->
+          <div class="border-t pt-4">
+            <h3 class="text-lg font-medium text-gray-900 mb-3">Basic Information</h3>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <p class="text-sm text-gray-500">First Name</p>
+                <p class="text-base font-semibold"><%= @profile.first_name %></p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500">Last Name</p>
+                <p class="text-base font-semibold"><%= @profile.last_name %></p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500">Email</p>
+                <p class="text-base font-semibold"><%= current_user.email %></p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500">Date of Birth</p>
+                <p class="text-base font-semibold">
+                  <%= @profile.date_of_birth&.strftime("%B %d, %Y") || "Not provided" %>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Identity Information -->
+          <div class="border-t pt-4">
+            <h3 class="text-lg font-medium text-gray-900 mb-3">Identity</h3>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <p class="text-sm text-gray-500">Gender</p>
+                <p class="text-base font-semibold"><%= @profile.gender || "Not provided" %></p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500">Pronouns</p>
+                <p class="text-base font-semibold"><%= @profile.pronouns || "Not provided" %></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Location Information -->
+          <div class="border-t pt-4">
+            <h3 class="text-lg font-medium text-gray-900 mb-3">Location</h3>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <p class="text-sm text-gray-500">Location</p>
+                <p class="text-base font-semibold"><%= @profile.location || "Not provided" %></p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500">Timezone</p>
+                <p class="text-base font-semibold"><%= @profile.timezone || "Not provided" %></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Professional Links -->
+          <div class="border-t pt-4">
+            <h3 class="text-lg font-medium text-gray-900 mb-3">Professional Links</h3>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <p class="text-sm text-gray-500">LinkedIn</p>
+                <% if @profile.linkedin_url.present? %>
+                  <%= link_to @profile.linkedin_url, @profile.linkedin_url, 
+                      class: "text-base text-primary-600 hover:underline", 
+                      target: "_blank" %>
+                <% else %>
+                  <p class="text-base text-gray-500">Not provided</p>
+                <% end %>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500">Portfolio</p>
+                <% if @profile.portfolio_url.present? %>
+                  <%= link_to @profile.portfolio_url, @profile.portfolio_url, 
+                      class: "text-base text-primary-600 hover:underline", 
+                      target: "_blank" %>
+                <% else %>
+                  <p class="text-base text-gray-500">Not provided</p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column - Role Profiles -->
+    <div class="w-full">
+      <!-- Current Role Profile Card -->
+      <div class="p-6 bg-white border border-gray-200 rounded-lg mb-6">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-2xl font-bold text-gray-900">Current Role</h2>
+          <%= link_to edit_role_profile_path(current_user.current_role_profile.token), 
+              class: "bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5" do %>
+            <i class="fas fa-edit mr-2"></i>Edit Role
+          <% end if current_user.current_role_profile %>
+        </div>
+
+        <% if current_user.current_role_profile %>
+          <div class="space-y-4">
+            <div>
+              <p class="text-sm text-gray-500">Role Title</p>
+              <p class="text-base font-semibold"><%= current_user.current_role_profile.title %></p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500">Start Date</p>
+              <p class="text-base font-semibold"><%= current_user.current_role_profile.start_date&.strftime("%B %d, %Y") %></p>
+            </div>
+          </div>
+        <% else %>
+          <p class="text-gray-500 italic">No current role profile set.</p>
+        <% end %>
+      </div>
+
+      <!-- Role History Table -->
+      <div class="relative overflow-x-auto border border-gray-200 rounded-lg">
+        <div class="flex items-center justify-between p-4 bg-white">
+          <h3 class="text-lg font-semibold text-gray-900">Role History</h3>
+          <%= link_to new_role_profile_path, 
+              class: "text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5" do %>
+            <i class="fas fa-plus mr-2"></i>Add Role
+          <% end %>
+        </div>
+        <table class="w-full text-sm text-left text-gray-500">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3">Role Title</th>
+              <th scope="col" class="px-6 py-3">Period</th>
+              <th scope="col" class="px-6 py-3">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% current_user.role_profiles.order(start_date: :desc).each do |role| %>
+              <tr class="bg-white border-b hover:bg-gray-50">
+                <td class="px-6 py-4 font-medium text-gray-900"><%= role.title %></td>
+                <td class="px-6 py-4">
+                  <%= role.start_date&.strftime("%b %Y") %> - 
+                  <%= role.end_date&.strftime("%b %Y") || "Present" %>
+                </td>
+                <td class="px-6 py-4">
+                  <%= link_to edit_role_profile_path(role.token), 
+                      class: "font-medium text-primary-600 hover:underline" do %>
+                    Edit
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

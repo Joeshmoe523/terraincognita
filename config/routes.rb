@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :profiles, only: [ :index ]
 
-  resources :role_profiles, only: [ :create ]
+  resources :role_profiles, param: :token, only: [ :new, :create, :show, :edit, :update ]
 
   resources :growth_plans, param: :token do
     member do

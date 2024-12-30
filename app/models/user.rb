@@ -28,6 +28,10 @@ class User < ApplicationRecord
     @form_step ||= :welcome
   end
 
+  def current_role_profile
+    role_profiles.where(end_date: nil).or(role_profiles.where("end_date > ?", Date.current)).order(start_date: :desc).first
+  end
+
   private
 
   def create_profile

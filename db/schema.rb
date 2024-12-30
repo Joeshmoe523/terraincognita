@@ -10,9 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_29_212629) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_30_191417) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "feedback_items", force: :cascade do |t|
+    t.string "type"
+    t.string "token"
+    t.string "provider_name"
+    t.text "content"
+    t.text "situation"
+    t.text "behavior"
+    t.text "impact"
+    t.text "reflections"
+    t.bigint "growth_plan_id"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["growth_plan_id"], name: "index_feedback_items_on_growth_plan_id"
+    t.index ["token"], name: "index_feedback_items_on_token", unique: true
+    t.index ["user_id"], name: "index_feedback_items_on_user_id"
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.string "type"
+    t.string "token"
+    t.string "provider_name"
+    t.text "content"
+    t.text "situation"
+    t.text "behavior"
+    t.text "impact"
+    t.text "reflections"
+    t.bigint "growth_plan_id"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["growth_plan_id"], name: "index_feedbacks_on_growth_plan_id"
+    t.index ["token"], name: "index_feedbacks_on_token", unique: true
+    t.index ["user_id"], name: "index_feedbacks_on_user_id"
+  end
 
   create_table "growth_plans", force: :cascade do |t|
     t.string "title"
@@ -44,8 +80,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_29_212629) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "token"
-    t.index ["token"], name: "index_role_profiles_on_token", unique: true
     t.index ["user_id"], name: "index_role_profiles_on_user_id"
   end
 
@@ -82,6 +116,10 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_29_212629) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "feedback_items", "growth_plans"
+  add_foreign_key "feedback_items", "users"
+  add_foreign_key "feedbacks", "growth_plans"
+  add_foreign_key "feedbacks", "users"
   add_foreign_key "growth_plans", "users"
   add_foreign_key "role_profiles", "users"
   add_foreign_key "user_profiles", "users"

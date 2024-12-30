@@ -4,9 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
 
-  has_many :growth_plans
+  has_many :growth_plans, dependent: :destroy
   has_many :role_profiles, dependent: :destroy
   has_one :user_profile, dependent: :destroy
+  has_many :feedback_items
   after_create :create_profile
 
   def full_name

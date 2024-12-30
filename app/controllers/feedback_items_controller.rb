@@ -4,7 +4,7 @@ class FeedbackItemsController < ApplicationController
 
     if @feedback_item.save
       if @feedback_item.growth_plan.present?
-        redirect_to growth_plan_path(@feedback_item.growth_plan.token), notice: "Feedback item was successfully created."
+        redirect_to timeline_growth_plan_path(@feedback_item.growth_plan.token), notice: "Feedback item was successfully created."
       else
         redirect_to dashboard_path, notice: "Feedback item was successfully created."
       end

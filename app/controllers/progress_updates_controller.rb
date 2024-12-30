@@ -4,7 +4,7 @@ class ProgressUpdatesController < ApplicationController
 
     if @progress_update.save
       if @progress_update.growth_plan.present?
-        redirect_to growth_plan_path(@progress_update.growth_plan.token), notice: "Progress update was successfully created."
+        redirect_to timeline_growth_plan_path(@progress_update.growth_plan.token), notice: "Progress update was successfully created."
       else
         redirect_to dashboard_path, notice: "Progress update was successfully created."
       end

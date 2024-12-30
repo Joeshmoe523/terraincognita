@@ -14,7 +14,7 @@
         <div>
           <h2 class="text-lg font-semibold text-gray-900 mb-6">Progress Timeline</h2>
           <ol class="relative border-s border-gray-200 dark:border-gray-700 m-4"> 
-            <%= render partial: "timeline_items" %>
+            <%= render partial: "timeline_items", locals: { timeline_items: @timeline_items } %>
           </ol>
         </div>
       </div>

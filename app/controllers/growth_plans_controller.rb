@@ -9,8 +9,8 @@ class GrowthPlansController < ApplicationController
   def show
     @growth_plan = GrowthPlan.find_by_token!(params[:token])
     @growth_plans = current_user.growth_plans
-    @feedback_item = @growth_plan.feedback_items.new
-    @progress_update = @growth_plan.progress_updates.new
+    @new_feedback_item = @growth_plan.feedback_items.new
+    @new_progress_update = @growth_plan.progress_updates.new
   end
   def edit
     @growth_plan = GrowthPlan.find_by_token!(params[:token])
@@ -19,8 +19,15 @@ class GrowthPlansController < ApplicationController
   def timeline
     @growth_plan = GrowthPlan.find_by_token!(params[:token])
     @growth_plans = current_user.growth_plans
-    @feedback_item = @growth_plan.feedback_items.new
-    @progress_update = @growth_plan.progress_updates.new
+
+    # Combine and sort feedback items and progress updates
+    @timeline_items = (
+      Array(@growth_plan.feedback_items) +
+      Array(@growth_plan.progress_updates)
+    ).sort_by { |item| item.created_at || Time.at(0) }.reverse
+
+    @new_feedback_item = @growth_plan.feedback_items.new
+    @new_progress_update = @growth_plan.progress_updates.new
   end
 
   def collaborators

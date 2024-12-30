@@ -8,6 +8,9 @@ class GrowthPlansController < ApplicationController
 
   def show
     @growth_plan = GrowthPlan.find_by_token!(params[:token])
+    @growth_plans = current_user.growth_plans
+    @feedback_item = @growth_plan.feedback_items.new
+    @progress_update = @growth_plan.progress_updates.new
   end
   def edit
     @growth_plan = GrowthPlan.find_by_token!(params[:token])
@@ -15,6 +18,9 @@ class GrowthPlansController < ApplicationController
 
   def timeline
     @growth_plan = GrowthPlan.find_by_token!(params[:token])
+    @growth_plans = current_user.growth_plans
+    @feedback_item = @growth_plan.feedback_items.new
+    @progress_update = @growth_plan.progress_updates.new
   end
 
   def collaborators

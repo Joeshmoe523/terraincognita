@@ -5,9 +5,9 @@
       <div class="p-6 bg-white border border-gray-200 rounded-lg">
         <div class="flex justify-between items-center mb-4">
           <h2 class="text-2xl font-bold text-gray-900">Personal Information</h2>
-          <%= link_to edit_user_registration_path, 
-              class: "text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5" do %>
-            <i class="fas fa-edit mr-2"></i>Edit Profile
+          <%= link_to edit_user_profile_path(current_user.user_profile), 
+              class: "font-medium rounded-lg text-sm px-5 py-2.5" do %>
+            <i class="fas fa-edit mr-2"></i>Edit Info
           <% end %>
         </div>
 

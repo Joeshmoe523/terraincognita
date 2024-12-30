@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :role_profiles, dependent: :destroy
   has_one :user_profile, dependent: :destroy
   has_many :feedback_items
+  has_many :progress_updates
   after_create :create_profile
 
   def full_name

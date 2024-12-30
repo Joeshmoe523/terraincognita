@@ -105,9 +105,11 @@
 
       <!-- Right Column (1/3 width) -->
       <div class="col-span-1">
-        <div class="w-full p-6 bg-white border border-gray-200 rounded-lg">
-        </div>
+        <%= render partial: "growth_plans/quick_actions" %>
       </div>
     </div>
   </div>
 </div>
+
+<%= render partial: "feedback_items/add_modal" %>
+<%= render partial: "progress_updates/add_modal" %>

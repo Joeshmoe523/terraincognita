@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_30_191417) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_30_194600) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "feedback_items", force: :cascade do |t|
-    t.string "type"
+    t.string "feedback_type"
     t.string "token"
     t.string "provider_name"
     t.text "content"
@@ -71,6 +71,19 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_30_191417) do
     t.index ["user_id"], name: "index_growth_plans_on_user_id"
   end
 
+  create_table "progress_updates", force: :cascade do |t|
+    t.string "token"
+    t.text "actions"
+    t.text "extractions"
+    t.bigint "user_id", null: false
+    t.bigint "growth_plan_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["growth_plan_id"], name: "index_progress_updates_on_growth_plan_id"
+    t.index ["token"], name: "index_progress_updates_on_token", unique: true
+    t.index ["user_id"], name: "index_progress_updates_on_user_id"
+  end
+
   create_table "role_profiles", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -121,6 +134,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_30_191417) do
   add_foreign_key "feedback_items", "growth_plans"
   add_foreign_key "feedback_items", "users"
   add_foreign_key "growth_plans", "users"
+  add_foreign_key "progress_updates", "growth_plans"
+  add_foreign_key "progress_updates", "users"
   add_foreign_key "role_profiles", "users"
   add_foreign_key "user_profiles", "users"
 end
